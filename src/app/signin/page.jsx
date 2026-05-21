@@ -2,6 +2,7 @@
 import { Check } from "@gravity-ui/icons";
 import { authClient } from "../lib/auth-client";
 import { useRouter } from "next/navigation";
+import { FaGoogle } from "react-icons/fa";
 
 export default function SignUp() {
   const router = useRouter();
@@ -26,6 +27,12 @@ export default function SignUp() {
       console.error("Login failed:", error);
     }
   };
+   
+  const handelClickGoogle = async() =>{
+    await authClient.signIn.social({
+      provider:"google"
+    })
+  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-base-200 p-4">
@@ -75,6 +82,10 @@ export default function SignUp() {
               Reset
             </button>
           </div>
+          <div className="flex justify-center items-center p-2">
+            <h1>or</h1>
+          </div>
+          <button type="button" onClick={handelClickGoogle} className="btn btn-accent"><FaGoogle />Signin with Google</button>
         </form>
       </div>
     </div>

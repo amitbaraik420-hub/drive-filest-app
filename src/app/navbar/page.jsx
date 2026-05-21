@@ -1,8 +1,15 @@
 "use client"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
+import { authClient } from "../lib/auth-client";
 
 export default function Navbar() {
+        const userData = authClient.useSession()
+        const user = userData.data?.user
+        const handelSignOut = async() => {
+          await authClient.signOut();
+        }
+
   const pathname = usePathname();
     const Links = (
         <div className="flex gap-3">
@@ -33,12 +40,24 @@ export default function Navbar() {
       {Links}
     </ul>
   </div>
-  <div className="navbar-end flex gap-3">
+  {!user && ( <div className="navbar-end flex gap-3">
     <Link className="btn" href="/signin">LogIn</Link>
     <Link className="btn" href="/signUp">SignUp</Link>
-  
-  
   </div>
+  )}
+  { user && (<div className="navbar-end">
+     <div className="flex items-center gap-2">
+      <div className="avatar">
+    <div className="w-12 rounded-[100%]">
+      <img src={user?.image} referrerPolicy="no-referrer" />
+    </div>
+  </div>
+     <button onClick={handelSignOut} className="btn btn-accent">Logout</button>
+    </div>
+    </div>
+    )}
+ 
+ 
 </div>
   )
 }

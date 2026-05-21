@@ -1,5 +1,7 @@
 import { getAllProducts } from "@/app/lib/card/data";
 import Link from "next/link";
+import { DeleteModal } from "@/app/deletalert/page";
+import Edit from "@/app/card/[id]/edit/page";
 
 export default async function Page() {
   const data = await getAllProducts();
@@ -34,16 +36,16 @@ export default async function Page() {
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <p className="text-[10px] uppercase text-gray-400 font-bold tracking-widest">
-                    {item?.category || "SUV"}
+                    {item?.status || "SUV"}
                   </p>
                   <h3 className="text-xl font-extrabold text-slate-800 mt-0.5">
-                    {item?.name || "Hyundai Tucson"}
+                    {item?.title || "Hyundai Tucson"}
                   </h3>
                 </div>
                 
           
                 <div className="bg-slate-900 text-white rounded-xl px-3 py-1.5 text-center min-w-[65px]">
-                  <span className="text-sm font-bold">${item?.price || "110"}</span>
+                  <span className="text-sm font-bold">${item?.pricePerDay || "110"}</span>
                   <p className="text-[9px] text-gray-400 leading-none">per day</p>
                 </div>
               </div>
@@ -57,24 +59,34 @@ export default async function Page() {
               <div className="space-y-2 text-xs sm:text-sm text-gray-600 mb-5 border-t border-gray-50 pt-3">
                 <div className="flex items-center gap-2">
                   <span className="text-gray-400">📍</span>
-                  <span className="font-medium text-slate-700">{item?.location || "Uttara, Dhaka"}</span>
+                  <span className="font-medium text-slate-700">{item?.location}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-400">👥</span>
-                  <span className="font-medium text-slate-700">{item?.seats || "5"} seats</span>
+                  <span className="font-medium text-slate-700">{item?.seats} seats</span>
                 </div>
               </div>
 
              <Link href={`/card/${item._id}`} className="w-full bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold py-3 px-4 rounded-xl transition duration-200 text-center text-sm shadow-sm active:scale-[0.98]">
                      View Details
              </Link>
-             
+          
+              
+            
+              
             </div>
-
+               <div className="flex justify-between items-center p-3">
+                 <div>
+                  <Link href={`/card/${item._id}/edit`} className="btn btn-active">Edit</Link>
+                 
+                  </div>
+                  <DeleteModal productId={item._id}></DeleteModal>
+              </div>
           </div>
         ))}
 
       </div>
+      
     </div>
   );
 }
