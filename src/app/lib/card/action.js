@@ -32,7 +32,7 @@ const data = await res.json()
 
  export const deleteProduct = async (id) => {
   try {
-    console.log("comes action file", id);
+    // console.log("comes action file", id);
     
     const res = await fetch(`http://localhost:8000/feltest/${id}`, {
       method: 'DELETE',
@@ -40,7 +40,7 @@ const data = await res.json()
     
     
     const data = await res.json();
-    console.log("find data esily", data);
+    // console.log("find data esily", data);
     
     
     if (!res.ok) {

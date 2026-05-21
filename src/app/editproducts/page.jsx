@@ -9,7 +9,7 @@ export default function EditeCard({ data }) {
   
   const res = await updataProduct(data._id, formData);
   
-  console.log("Server Response:", res);
+//   console.log("Server Response:", res);
 
  
   if (res) {

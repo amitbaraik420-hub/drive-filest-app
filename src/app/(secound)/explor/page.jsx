@@ -1,11 +1,11 @@
 import { getAllProducts } from "@/app/lib/card/data";
 import Link from "next/link";
 import { DeleteModal } from "@/app/deletalert/page";
-import Edit from "@/app/card/[id]/edit/page";
+
 
 export default async function Page() {
   const data = await getAllProducts();
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
