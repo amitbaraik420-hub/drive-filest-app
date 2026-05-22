@@ -2,10 +2,10 @@ import { getAllProducts } from "@/app/lib/card/data";
 import Link from "next/link";
 
 export default async function MyBookingsPage() {
- 
+  
   const cars = await getAllProducts();
 
-  
+ 
   const totalCars = cars.length;
   const availableCars = cars.filter(car => car.status?.toLowerCase() === 'available').length;
   const bookedCars = cars.filter(car => car.status?.toLowerCase() === 'unavailable').length;
@@ -13,13 +13,13 @@ export default async function MyBookingsPage() {
   return (
     <div className="container mx-auto px-6 py-10 min-h-screen bg-gray-50">
       
-    
+
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800">My Bookings Dashboard</h1>
         <p className="text-sm text-gray-500 mt-1">Manage and track your premium fleet real-time.</p>
       </div>
 
-     
+      
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-transform hover:scale-[1.02]">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Fleet</p>
@@ -37,7 +37,7 @@ export default async function MyBookingsPage() {
         </div>
       </div>
 
-  
+     
       {cars.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 bg-white rounded-xl shadow-sm border">
           <p className="text-gray-500 text-lg mb-4">No cars available in the garage!</p>
@@ -50,7 +50,7 @@ export default async function MyBookingsPage() {
       ) : (
         <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-200/80">
           <table className="min-w-full table-auto">
-          
+           
             <thead className="bg-[#1e293b] text-white">
               <tr>
                 <th className="px-6 py-4 text-left font-semibold text-sm">Car Details</th>
@@ -69,7 +69,7 @@ export default async function MyBookingsPage() {
                 return (
                   <tr key={item._id} className="hover:bg-gray-50/80 transition-colors text-gray-700">
                     
-                   
+                 
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
                         {item.image && (
@@ -88,7 +88,7 @@ export default async function MyBookingsPage() {
                       </div>
                     </td>
                     
-                    
+                   
                     <td className="px-6 py-4 text-sm text-gray-500 font-medium">
                       {item.location || "Dhaka"}
                     </td>
@@ -98,12 +98,12 @@ export default async function MyBookingsPage() {
                       {item.seats ? `${item.seats} Seater` : "5 Seater"}
                     </td>
                     
-                   
+                  
                     <td className="px-6 py-4 font-bold text-gray-900 text-sm">
                       ${item.pricePerDay || item.price || "0"}
                     </td>
                     
-                  
+                   
                     <td className="px-6 py-4">
                       <span className={`px-2.5 py-1 inline-flex text-[11px] leading-5 font-extrabold rounded-full uppercase tracking-wider
                         ${isAvailable 

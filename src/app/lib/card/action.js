@@ -1,4 +1,5 @@
  'use server';
+ 
 import { revalidatePath } from "next/cache";
 
 export const addProducts = async(formdata) => {
@@ -57,34 +58,38 @@ const data = await res.json()
   }
 };
 
-
-
-
 export const updataProduct = async (id, formData) => {
-  const newProduct = Object.fromEntries(formData.entries());
-  
-  const modifildData = {
-    title: newProduct.title,
-    type: newProduct.type,
-    status: newProduct.status,
-    pricePerDay: newProduct.pricePerDay,
-    image: newProduct.image,
-    description: newProduct.description,
-    location: newProduct.location,
-    totalSeats: newProduct.totalSeats
-  };
+    try {
+        const newProduct = Object.fromEntries(formData.entries());
+        
+        const modifildData = {
+            title: newProduct.title,
+            type: newProduct.type,
+            status: newProduct.status,
+            pricePerDay: newProduct.pricePerDay,
+            image: newProduct.image,
+            description: newProduct.description,
+            location: newProduct.location,
+            totalSeats: newProduct.totalSeats
+        };
 
- 
-  const res = await fetch(`http://localhost:8000/feltest/${id}`, {
-    method: "PUT", 
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(modifildData),
-  });
+        const res = await fetch(`http://localhost:8000/feltest/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(modifildData),
+        });
 
-  const data = await res.json();
-  
-  revalidatePath("/adding");
-  return data;
+        if (!res.ok) {
+            return { success: false, message: "Failed to update backend" };
+        }
+
+        const data = await res.json();
+        return { success: true, data: data };
+
+    } catch (error) {
+        console.error("Error inside updataProduct action:", error);
+        return { success: false, error: error.message };
+    }
 };

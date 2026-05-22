@@ -17,23 +17,20 @@ export const getAllProducts = async () => {
 
 export const getProductById = async (id) => {
   try {
-    const allProducts = await getAllProducts();
-    
-    if (!allProducts || allProducts.length === 0) {
-      console.log("No products received from server.");
-      return null;
-    }
-
    
-    const singleProduct = allProducts.find((item) => {
-      const itemId = item._id ? item._id.toString() : '';
-      const compareId = id ? id.toString() : '';
-      return itemId === compareId;
+    const res = await fetch(`http://localhost:8000/feltest/${id}`, {
+      cache: 'no-store' 
     });
     
-    return singleProduct || null;
+   
+    if (!res.ok) {
+       console.error(`NOT GET DATA: STATUS ${res.status}`);
+       return null;
+    }
+    
+    return await res.json();
   } catch (error) {
-    console.error("Error in getProductById:", error);
+    console.error("Error fetching product by ID:", error);
     return null;
   }
 };

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getAllProducts } from "@/app/lib/card/data";
 import Link from "next/link";
 import { DeleteModal } from "@/app/deletalert/page";

@@ -5,16 +5,17 @@ import { updataProduct } from '../lib/card/action';
 export default function EditeCard({ data }) { 
   const router = useRouter();
 
-  const handelSubmit = async (formData) => {
-  
-  const res = await updataProduct(data._id, formData);
-  
-//   console.log("Server Response:", res);
-
- 
-  if (res) {
-    router.push('/adding');
-  }
+const handelSubmit = async (formData) => {
+    const res = await updataProduct(data._id, formData);
+    
+    if (res && res.success) {
+        
+        router.refresh(); 
+        
+        router.push('/adding');
+    } else {
+        alert("গণ্ডগোল হয়েছে! আপডেট করা যায়নি।");
+    }
 };
   
 
