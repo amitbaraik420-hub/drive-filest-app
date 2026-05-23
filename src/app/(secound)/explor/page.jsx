@@ -1,7 +1,8 @@
 export const dynamic = "force-dynamic";
 import { getAllProducts } from "@/app/lib/card/data";
+import { DeleteModal } from "@/components/DeleteModel";
 import Link from "next/link";
-// import { DeleteModal } from "@/app/deletalert/page";
+
 
 
 export default async function Page() {
@@ -81,7 +82,7 @@ export default async function Page() {
                   <Link href={`/card/${item._id}/edit`} className="btn btn-active">Edit</Link>
                  
                   </div>
-                  {/* <DeleteModal productId={item._id}></DeleteModal> */}np
+                  <DeleteModal productId={item._id}></DeleteModal>
               </div>
           </div>
         ))}

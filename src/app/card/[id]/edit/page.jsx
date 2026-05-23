@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
-import EditeCard from "@/app/editproducts/page";
+
 import { getProductById } from "@/app/lib/card/data"; 
+import EditeCard from "@/components/EditCard";
 
 export default async function Edit({ params }) {
     const resolvedParams = await params; 
