@@ -152,3 +152,12 @@
 //     </div>
 //   );
 // }
+import React from 'react'
+
+export default function EditProdutPage() {
+  return (
+    <div>
+      <h1>amae suner bangla</h1>
+    </div>
+  )
+}
