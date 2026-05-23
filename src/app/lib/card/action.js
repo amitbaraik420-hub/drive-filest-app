@@ -14,7 +14,7 @@ export const addProducts = async(formdata) => {
   "description": newProduct.description,
 };
  
-const res = await fetch("http://localhost:8000/feltest", {
+const res = await fetch("https://drive-filest-app-io6a.vercel.app/feltest", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(modifildData)
@@ -35,7 +35,7 @@ const data = await res.json()
   try {
     // console.log("comes action file", id);
     
-    const res = await fetch(`http://localhost:8000/feltest/${id}`, {
+    const res = await fetch(`https://drive-filest-app-io6a.vercel.app/feltest/${id}`, {
       method: 'DELETE',
     });
     
@@ -73,7 +73,7 @@ export const updataProduct = async (id, formData) => {
             totalSeats: newProduct.totalSeats
         };
 
-        const res = await fetch(`http://localhost:8000/feltest/${id}`, {
+        const res = await fetch(`https://drive-filest-app-io6a.vercel.app/feltest/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

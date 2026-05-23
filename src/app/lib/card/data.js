@@ -1,7 +1,7 @@
 
 export const getAllProducts = async () => {
   try {
-    const res = await fetch("http://localhost:8000/feltest", { cache: 'no-store' });
+    const res = await fetch("https://drive-filest-app-io6a.vercel.app/feltest", { cache: 'no-store' });
     
     if (!res.ok) {
       console.error(`Express server returned status: ${res.status}`);
@@ -18,7 +18,7 @@ export const getAllProducts = async () => {
 export const getProductById = async (id) => {
   try {
    
-    const res = await fetch(`http://localhost:8000/feltest/${id}`, {
+    const res = await fetch(`https://drive-filest-app-io6a.vercel.app/feltest/${id}`, {
       cache: 'no-store' 
     });
     
@@ -38,7 +38,7 @@ export const getProductById = async (id) => {
 export const getMyBookings = async (email) => {
   try {
    
-    const res = await fetch(`http://localhost:8000/feltest?email=${email}`, {
+    const res = await fetch(`https://drive-filest-app-io6a.vercel.app/feltest?email=${email}`, {
       cache: 'no-store'
     });
     if (!res.ok) return [];
